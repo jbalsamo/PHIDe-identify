@@ -11,16 +11,17 @@ const ai = new GoogleGenAI({ apiKey: API_KEY });
 export async function redactText(text: string): Promise<string> {
     const model = 'gemini-2.5-flash';
 
-    const systemInstruction = `You are an expert redaction system specializing in medical data privacy. Your task is to analyze the provided text and perform two specific actions:
+    const systemInstruction = `You are an expert redaction system specializing in data privacy. Your task is to analyze the provided text and perform two specific actions:
 
-1.  **Redact Protected Health Information (PHI):**
-    *   Medical record numbers, patient identifiers (e.g., Ref: #GH-789-MRI).
-    *   Specific medical diagnoses, conditions, or treatments (e.g., persistent headaches, MRI, mild inflammation).
-    *   Medication names (e.g., Ibuprofen).
-    *   Names of doctors, nurses, and other healthcare providers.
-    *   Names of hospitals, clinics, or other healthcare facilities.
-    *   Health insurance information (provider names, policy numbers).
+1.  **Redact Sensitive Information (PII & PHI):**
+    *   **Personal Identifiable Information (PII):** Names, addresses, phone numbers, email addresses, and financial information (e.g., "Visa ending in 4321").
+    *   **Protected Health Information (PHI):** Medical record numbers, patient identifiers, specific medical diagnoses/conditions/treatments, medication names, healthcare provider names, hospital/clinic names, and health insurance information.
     *   Replace the redacted information with clear, generic placeholders in brackets. Use the following placeholders:
+        *   Names: [REDACTED_NAME]
+        *   Addresses: [REDACTED_ADDRESS]
+        *   Phone Numbers: [REDACTED_PHONE]
+        *   Email Addresses: [REDACTED_EMAIL]
+        *   Financial Info: [REDACTED_FINANCIAL_INFO]
         *   Medical Conditions/Diagnoses: [REDACTED_MEDICAL_CONDITION]
         *   Medical Procedures/Treatments: [REDACTED_PROCEDURE]
         *   Medications: [REDACTED_MEDICATION]
@@ -36,7 +37,6 @@ export async function redactText(text: string): Promise<string> {
     *   Shift all other dates in the document forward by the same time interval, preserving the relative time differences between them. For example, if two original dates were 7 days apart, their new dateshifted versions should also be 7 days apart. Express the new dates in the same format as the original (e.g., YYYY-MM-DD).
 
 **IMPORTANT RULES:**
-- **DO NOT** redact Personal Identifiable Information (PII) like patient names, addresses, phone numbers, email addresses, or partial financial information (e.g., "Visa ending in 4321").
 - Preserve the original structure and formatting of the text as much as possible.
 - Only return the modified text.
 - DO NOT include any explanations, apologies, or introductory/concluding remarks in your response.`;

@@ -48,10 +48,10 @@ const App: React.FC = () => {
             <div className="max-w-7xl mx-auto">
                 <header className="text-center mb-8">
                     <h1 className="text-4xl sm:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">
-                        PHI Redactor & Dateshifter
+                        PII & PHI Redactor
                     </h1>
                     <p className="mt-2 text-lg text-slate-400">
-                        Automatically remove protected health information (PHI) and shift dates to protect privacy.
+                        Automatically remove personal (PII) and protected health information (PHI) to protect privacy.
                     </p>
                 </header>
 
@@ -79,7 +79,7 @@ const App: React.FC = () => {
                                     Processing...
                                 </>
                             ) : (
-                                'Redact PHI & Shift Dates'
+                                'Redact PII & PHI'
                             )}
                         </button>
                     </div>
