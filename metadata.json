@@ -1,0 +1,5 @@
+{
+  "name": "PII & PHI Redactor",
+  "description": "An application that uses AI to detect and remove personal and medical information from text to protect privacy.",
+  "requestFramePermissions": []
+}
